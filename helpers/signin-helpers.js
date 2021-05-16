@@ -22,7 +22,6 @@ module.exports={
     doLogin:(userData)=>{
         return new Promise(async(resolve,reject)=>{
             let response={}
-            console.log(userData)
             hash=await userHelper.get().collection(collection.USER_COLLECTION).findOne({email:userData.email})
             if(hash){
                await bcrypt.compare(userData.password,hash.password).then((status)=>{
@@ -33,7 +32,7 @@ module.exports={
                         resolve(response)
                     }
                     else{
-                        console.log('password invAlid')
+                        console.log('password invalid')
                         response.status=false;
                         response.reason='Invalid Password'
                         resolve(response)

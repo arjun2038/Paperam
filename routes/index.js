@@ -23,7 +23,12 @@ router.get('/signup',(req,res)=>{
 })
 router.get('/home',(req,res)=>{
   let user=req.session.user
-  res.render('user/home',{homev:true,user})
+  if(req.session.loggedin){
+
+  res.render('user/home',{homev:true,user})}
+  else{
+    res.redirect('/signin')
+  }
 })
 router.post('/signup', (req, res) => {
   userHelper.doSignUp(req.body).then((response) => {
