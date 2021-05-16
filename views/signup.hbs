@@ -1,0 +1,42 @@
+<head>
+	<title>Paperam SignUp </title>
+</head>
+<div class="row">
+	<div class="col-12 col-md-6 col-lg-7 col-xl-8 my-auto p-5 ">
+		<img src="/images/icon.png" style="height: 15rem;" class="row mx-auto ">
+	</div>
+	<div class="card-wrapper ml-auto col-12 col-md-6 col-lg-5 col-xl-4">
+		<div class="card fat">
+			{{#if reas}}
+			<p style="text-align: center;" class="text-danger mt-3">{{reas}}</p>
+			{{/if}}
+			<div class="card-body">
+				<h4 class="card-title">Register</h4>
+				<form method="POST" class="my-login-validation" action="/signup">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input id="name" type="text" class="form-control" name="name" required autofocus>
+					</div>
+					<div class="form-group">
+						<label for="email">E-Mail Address</label>
+						<input id="email" type="email" class="form-control" name="email" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input id="password" type="password" class="form-control" name="password" required data-eye>
+					</div>
+
+					<div class="form-group m-0">
+						<button type="submit" class="btn btn-primary btn-block">
+							Register
+						</button>
+					</div>
+					<div class="mt-4 text-center">
+						Already have an account? <a href="/signin">Login</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
