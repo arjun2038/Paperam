@@ -3,8 +3,7 @@ var router = express.Router();
 var userHelper = require('../helpers/signin-helpers')
 var routeHelper = require('../helpers/route-helper');
 var productHelper = require('../helpers/product-helper');
-const { response } = require('express');
-
+var customerHelper=require('../helpers/customer-helper')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index');
@@ -91,5 +90,24 @@ router.get('/products', (req, res) => {
 router.post('/products', (req, res) => {
   productHelper.doProductCreate(req.body)
   res.redirect('/products')
+})
+router.get('/customers', (req, res) => {
+  if (req.session.loggedin) {
+    productHelper.doProductDisplay().then((products) => {
+    routeHelper.doRouteDisplay().then((routes)=>{
+    console.log(products)
+    customerHelper.doCustomerDisplay().then((customers)=>{
+      res.render('user/customer/customer', { homev: true,customers,products,routes})
+    })
+  })
+})
+  }
+  else {
+    res.redirect('/signin')
+  }
+})
+router.post('/customers', (req, res) => {
+  customerHelper.doCustomerCreate(req.body)
+  res.redirect('/customers')
 })
 module.exports = router;
