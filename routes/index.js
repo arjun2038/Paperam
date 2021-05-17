@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userHelper = require('../helpers/signin-helpers')
 var routeHelper = require('../helpers/route-helper');
+var productHelper = require('../helpers/product-helper');
 const { response } = require('express');
 
 /* GET home page. */
@@ -63,11 +64,10 @@ router.get('/logout', (req, res) => {
   res.redirect('/signin')
 })
 router.get('/routes', (req, res) => {
-  let user = req.session.user
   if (req.session.loggedin) {
     routeHelper.doRouteDisplay().then((products) => {
       console.log(products)
-      res.render('user/routes/routes', { homev: true, user,products })
+      res.render('user/routes/routes', { homev: true, products })
     })
   }
   else {
@@ -77,5 +77,19 @@ router.get('/routes', (req, res) => {
 router.post('/routes', (req, res) => {
   routeHelper.doRouteCreate(req.body)
   res.redirect('/routes')
+})
+router.get('/products', (req, res) => {
+  if (req.session.loggedin) {
+    productHelper.doProductDisplay().then((products) => {
+      res.render('user/product/product', { homev: true ,products})
+    })
+  }
+  else {
+    res.redirect('/signin')
+  }
+})
+router.post('/products', (req, res) => {
+  productHelper.doProductCreate(req.body)
+  res.redirect('/products')
 })
 module.exports = router;

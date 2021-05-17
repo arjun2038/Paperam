@@ -1,4 +1,5 @@
 module.exports={
    USER_COLLECTION:'user',
-   ROUTE_COLLECTION:'route'
+   ROUTE_COLLECTION:'route',
+   PRODUCT_COLLECTION:'product'
 }

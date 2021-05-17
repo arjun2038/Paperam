@@ -1,6 +1,5 @@
 var db = require('../config/connection')
 var collection = require('../config/collection')
-const { Db } = require('mongodb')
 module.exports = {
     doRouteCreate: (routeData) => {
         db.get().collection(collection.ROUTE_COLLECTION).insertOne(routeData)
