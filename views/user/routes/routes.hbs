@@ -42,19 +42,22 @@
           <th scope="col">Route</th>
           <th scope="col">Distributer</th>
           <th scope="col">Mobile</th>
+          <th scope="col"></th>
         </tr>
       </thead>
 
       <tbody>
-                  {{#each products}}
+        {{#each products}}
         <tr>
           <td>{{@index}}</td>
           <td>{{this.routename}}</td>
           <td>{{this.distributername}}</td>
           <td>{{this.distributernumber}}</td>
-
+          <td>
+  <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal"
+    data-whatever="@getbootstrap">Edit</button></td>
         </tr>
-                  {{/each}}
+        {{/each}}
       </tbody>
 
     </table>
