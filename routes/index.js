@@ -110,4 +110,11 @@ router.post('/customers', (req, res) => {
   customerHelper.doCustomerCreate(req.body)
   res.redirect('/customers')
 })
+router.get('/delete-product/:id',(req,res)=>{
+  let productId=req.params.id
+  productHelper.deleteProduct(productId).then((response)=>{
+    res.redirect('/products')
+
+  })
+})
 module.exports = router;
