@@ -124,4 +124,11 @@ router.get('/delete-customer/:id',(req,res)=>{
 
   })
 })
+router.get('/delete-route/:id',(req,res)=>{
+  let routeId=req.params.id
+  routeHelper.doDeleteRoute(routeId).then(()=>{
+    res.redirect('/routes')
+
+  })
+})
 module.exports = router;
