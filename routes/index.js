@@ -112,8 +112,15 @@ router.post('/customers', (req, res) => {
 })
 router.get('/delete-product/:id',(req,res)=>{
   let productId=req.params.id
-  productHelper.deleteProduct(productId).then((response)=>{
+  productHelper.deleteProduct(productId).then(()=>{
     res.redirect('/products')
+
+  })
+})
+router.get('/delete-customer/:id',(req,res)=>{
+  let customerId=req.params.id
+  customerHelper.doDeleteCustomer(customerId).then(()=>{
+    res.redirect('/customers')
 
   })
 })

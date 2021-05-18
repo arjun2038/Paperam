@@ -1,5 +1,6 @@
 var db = require('../config/connection')
 var collection = require('../config/collection')
+var ObjectId=require('mongodb').ObjectID
 module.exports = {
     doCustomerCreate: (customerData) => {
         db.get().collection(collection.CUSTOMER_COLLECTION).insertOne(customerData)
@@ -8,6 +9,11 @@ module.exports = {
         return new Promise(async(resolve, reject) => {
             products =await db.get().collection(collection.CUSTOMER_COLLECTION).find().toArray()
             resolve(products)
+        })
+    },
+    doDeleteCustomer:(customerId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.CUSTOMER_COLLECTION).removeOne({_id:ObjectId(customerId)}).then(()=>{resolve()})
         })
     }
 }
