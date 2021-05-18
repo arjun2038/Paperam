@@ -146,4 +146,26 @@ router.post('/edit-products/:id',(req,res)=>{
   productHelper.updateProduct(req.params.id,req.body)
   res.redirect('/products')
 })
+router.get('/edit-route/:id',(req,res)=>{
+  let user = req.session.user
+  let routeId=req.params.id
+  routeHelper.doEditRoute(routeId).then((route)=>{
+    res.render('user/routes/edit-route',{route,homev: true,user})
+  })
+})
+router.post('/edit-route/:id',(req,res)=>{
+  routeHelper.doUpdateRoute(req.params.id,req.body)
+  res.redirect('/routes')
+})
+router.get('/edit-customer/:id',(req,res)=>{
+  let user = req.session.user
+  let custId=req.params.id
+  productHelper.doProductDisplay().then((products) => {
+    routeHelper.doRouteDisplay().then((routes)=>{
+  customerHelper.doEditCustomer(custId).then((customer)=>{
+    res.render('user/customer/edit-customer',{customer,homev: true,user,products,routes})
+  })
+})
+})
+})
 module.exports = router;

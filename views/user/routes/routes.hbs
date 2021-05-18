@@ -55,8 +55,7 @@
           <td>{{this.distributername}}</td>
           <td>{{this.distributernumber}}</td>
           <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-              data-whatever="@getbootstrap">Edit</button>
+            <a href="/edit-route/{{this._id}}" class="btn btn-primary" >Edit</a>
           </td>
           <td><a href="/delete-route/{{this._id}} " class="btn btn-danger">Delete</a></td>
         </tr>

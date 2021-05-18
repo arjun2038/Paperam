@@ -44,7 +44,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" value="Add" class="btn btn-primary">
+                            <input type="submit" value="Add" onclick="enable()" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
@@ -73,11 +73,10 @@
                     </td>
                     <td>{{this.customermobile}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal" data-whatever="@getbootstrap">Edit</button>
+                        <a href="/edit-customer/{{this._id}}" class="btn btn-primary">Edit</a>
                     </td>
-                       <td>
-                       <a href="/delete-customer/{{this._id}}" class="btn btn-danger" >Delete</a>
+                    <td>
+                        <a href="/delete-customer/{{this._id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 {{/each}}
@@ -89,5 +88,8 @@
 <script src="/multiselect-master/multiselect.min.js"></script>
 <script>
     document.multiselect('#testSelect1');
+    	function enable() {
+		document.multiselect('#testSelect1').setIsEnabled(true);
+	}
 
 </script>
