@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/multiselect-master/styles/multiselect.css">
-<div style="width: 30rem;" class="mt-3" id="exampleModal">
-    <h5 style="text-align: center;font-size: 2rem;">Product</h5>
-    <form method="POST" action="/customers">
+<div style="width: 30rem;" class="mt-3">
+    <h5 style="text-align: center;font-size: 2rem;">Customer</h5>
+    <form method="POST" action="/edit-customer/{{this.customer._id}}">
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Customer Name</label>
             <input type="text" class="form-control" id="recipient-name" name="customername"
@@ -16,6 +16,8 @@
                 {{#each routes}}
                 <option value='{{this.routename}}'>{{this.routename}}</option>
                 {{/each}}
+                <option value='{{this.customer.routename}}'>{{this.customer.routename}}</option>
+
             </select>
         </div>
         <div class="form-group">
@@ -33,13 +35,12 @@
 
         </div>
         <div class="modal-footer">
-            <input type="submit" value="Add" class="btn btn-primary">
+            <input type="submit" value="Update" class="btn btn-success">
         </div>
     </form>
     <div>
         <script src="/multiselect-master/multiselect.min.js"></script>
         <script>
-	function enable() {
-		document.multiselect('#testSelect1').setIsEnabled(true);
-	}
+            document.multiselect('#testSelect1');
+
         </script>

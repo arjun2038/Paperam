@@ -21,5 +21,14 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.CUSTOMER_COLLECTION).findOne({_id:ObjectId(custId)}).then((response)=>{resolve(response)})
         })
+    },
+    doUpdateCustomer:(id,update)=>{
+        db.get().collection(collection.CUSTOMER_COLLECTION).updateOne({_id:ObjectId(id)},{$set:{
+            customername:update.customername,
+            routename:update.routename,
+            customermobile:update.customermobile,
+            product:update.product
+
+        }})
     }
 }

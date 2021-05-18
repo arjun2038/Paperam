@@ -168,4 +168,8 @@ router.get('/edit-customer/:id',(req,res)=>{
 })
 })
 })
+router.post('/edit-customer/:id',(req,res)=>{
+  customerHelper.doUpdateCustomer(req.params.id,req.body)
+  res.redirect('/customers')
+})
 module.exports = router;
