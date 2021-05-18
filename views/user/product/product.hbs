@@ -49,10 +49,10 @@
           <td>{{this.productname}}</td>
           <td>{{this.productprice}}</td>
           <td>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-    data-whatever="@getbootstrap">Edit</button></td>
-    <td><a href="/delete-product/{{this._id}}" class="btn btn-danger">Delete</a>
-       </td>
+            <a href="/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+          </td>
+          <td><a href="/delete-product/{{this._id}}" class="btn btn-danger">Delete</a>
+          </td>
         </tr>
         {{/each}}
       </tbody>

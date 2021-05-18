@@ -63,10 +63,11 @@ router.get('/logout', (req, res) => {
   res.redirect('/signin')
 })
 router.get('/routes', (req, res) => {
+  let user = req.session.user
   if (req.session.loggedin) {
     routeHelper.doRouteDisplay().then((products) => {
       console.log(products)
-      res.render('user/routes/routes', { homev: true, products })
+      res.render('user/routes/routes', { homev: true, products ,user})
     })
   }
   else {
@@ -78,9 +79,10 @@ router.post('/routes', (req, res) => {
   res.redirect('/routes')
 })
 router.get('/products', (req, res) => {
+  let user = req.session.user
   if (req.session.loggedin) {
     productHelper.doProductDisplay().then((products) => {
-      res.render('user/product/product', { homev: true ,products})
+      res.render('user/product/product', { homev: true ,products,user})
     })
   }
   else {
@@ -93,11 +95,12 @@ router.post('/products', (req, res) => {
 })
 router.get('/customers', (req, res) => {
   if (req.session.loggedin) {
+    let user = req.session.user
     productHelper.doProductDisplay().then((products) => {
     routeHelper.doRouteDisplay().then((routes)=>{
     console.log(products)
     customerHelper.doCustomerDisplay().then((customers)=>{
-      res.render('user/customer/customer', { homev: true,customers,products,routes})
+      res.render('user/customer/customer', { homev: true,customers,products,routes,user})
     })
   })
 })
@@ -130,5 +133,17 @@ router.get('/delete-route/:id',(req,res)=>{
     res.redirect('/routes')
 
   })
+})
+router.get('/edit-product/:id',(req,res)=>{
+  let user = req.session.user
+  let productId=req.params.id
+  productHelper.editproduct(productId).then((product)=>{
+    console.log(product)
+    res.render('user/product/edit-product',{product,homev: true,user})
+  })
+})
+router.post('/edit-products/:id',(req,res)=>{
+  productHelper.updateProduct(req.params.id,req.body)
+  res.redirect('/products')
 })
 module.exports = router;
