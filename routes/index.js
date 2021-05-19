@@ -172,4 +172,36 @@ router.post('/edit-customer/:id',(req,res)=>{
   customerHelper.doUpdateCustomer(req.params.id,req.body)
   res.redirect('/customers')
 })
+router.get('/bills', (req, res) => {
+  if (req.session.loggedin) {
+    let user = req.session.user
+    productHelper.doProductDisplay().then((products) => {
+    routeHelper.doRouteDisplay().then((routes)=>{
+    console.log(products)
+    customerHelper.doCustomerDisplay().then((customers)=>{
+      res.render('user/bills/bills', { homev: true,customers,products,routes,user})
+    })
+  })
+})
+  }
+  else {
+    res.redirect('/signin')
+  }
+})
+router.get('/payments', (req, res) => {
+  if (req.session.loggedin) {
+    let user = req.session.user
+    productHelper.doProductDisplay().then((products) => {
+    routeHelper.doRouteDisplay().then((routes)=>{
+    console.log(products)
+    customerHelper.doCustomerDisplay().then((customers)=>{
+      res.render('user/payments/payments', { homev: true,customers,products,routes,user})
+    })
+  })
+})
+  }
+  else {
+    res.redirect('/signin')
+  }
+})
 module.exports = router;
